@@ -1,0 +1,36 @@
+{
+    "Heróis": [
+        {"Classe": "Guerreiro", "Vida": 35, "Ataques": [
+            {"Nome do ataque": "Estocada feroz", "Dano": 5, "Recarga": 0},
+            {"Nome do ataque": "Investida poderosa", "Dano": 7, "Recarga": 2}
+        ], "Inventário": [], "Mana": 0},
+        {"Classe": "Mago", "Vida": 25, "Ataques": [
+        {"Nome do ataque": "Bola de fogo", "Elemento": "Fogo", "Dano": 5, "Custo": 1},
+        {"Nome do ataque": "Raio destruidor", "Elemento": "Eletricidade", "Dano": 5, "Custo": 1},
+        {"Nome do ataque": "Jato d'água", "Elemento": "Água", "Dano": 5, "Custo": 1}
+        ], "Inventário": [], "Mana": 20
+    }
+],
+    
+    "Monstros": [
+    {"Nome": "Goblin", "Vida": 10, "Andar": 1, "Ataque": 3, "Elemento": "Neutro", "Drop": []},
+    {"Nome": "Esqueleto", "Vida": 15, "Andar": 1, "Ataque": 2, "Elemento": "Neutro", "Drop": []},
+    {"Nome": "Orc", "Vida": 20, "Andar": 2, "Ataque": 4, "Elemento": "Fogo", "Drop": []},
+    {"Nome": "Espectro","Vida": 15, "Andar": 2, "Ataque": 5, "Elemento": "Eletricidade", "Drop": []},
+    {"Nome": "Sereia", "Vida": 15, "Andar": 2, "Ataque": 5, "Elemento": "Água", "Drop": []},
+    {"Nome": "Ziz", "Vida": 30, "Andar": 3, "Ataque": 5, "Elemento": "Eletricidade", "Drop": []},
+    {"Nome": "Basilisco", "Vida": 25, "Andar": 3, "Ataque": 6, "Elemento": "Água", "Drop": []},
+    {"Nome": "Fênix", "Vida": 40, "Andar": 3, "Ataque": 3, "Elemento": "Fogo", "Drop": []},
+    {"Nome": "Dragão", "Vida": 45, "Andar": 4, "Ataque": 7, "Elemento": "Fogo", "Drop": []},
+    {"Nome": "Leviatã", "Vida": 40, "Andar": 4, "Ataque": 8, "Elemento": "Água", "Drop": []},
+    {"Nome": "Raiju", "Vida": 45, "Andar": 4, "Ataque": 7, "Elemento": "Eletricidade", "Drop": []}
+    ],
+
+    "Itens": [
+        {"Nome": "Poção de cura pequena", "Valor": 5, "Atributo": "Vida"},
+        {"Nome": "Poção de mana pequena", "Valor": 5, "Atributo": "Mana"},
+        {"Nome": "Poção de amplificação", "Valor": 5, "Atributo": "Dano"},
+        {"Nome": "Espada longa", "Classe": "Guerreiro", "Valor": 5, "Atributo": "Dano"},
+        {"Nome": "Varinha de madeira", "Classe": "Mago", "Atributo": "Dano", "Valor": 5}
+    ]
+}
