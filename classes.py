@@ -20,6 +20,9 @@ class Heroi:
         self.aparada = False
         self.defendendo = False
         self.recarga_parry = 0
+        self.dano_causado = 0
+        self.dano_recebido = 0
+        self.dano_bloqueado = 0
     
     ## função feita para a escolha do herói e a implementação dos seus status
     def escolher_classe(self, herois):
@@ -121,12 +124,14 @@ class combate_inimigo(Inimigo):
         
         elif self.heroi.defendendo == True:
             dano //= 2
+            self.heroi.dano_bloqueado += dano
             print(f"O heroi defendeu o ataque! Causou apenas {dano}")
 
         else:
             print(f"O inimigo te atacou e causou {dano} de dano!")
         
         self.heroi.vida -= dano
+        self.heroi.dano_recebido += dano
 
     ## funções para a defesa, o reset da defesa e o drop de itens
     def defender(self):
@@ -187,6 +192,7 @@ class combate_guerreiro(Heroi):
             print(f"\nVocê usou {ataque_escolhido['Nome do ataque']} e causou {dano} de dano!")
         
         self.inimigo.vida -= dano
+        self.heroi.dano_causado += dano
 
         ataque_escolhido['Cooldown atual'] = ataque_escolhido['Recarga']
     
@@ -296,6 +302,7 @@ class combate_mago(Heroi):
             print(f"\nVocê usou {ataque_escolhido['Nome do ataque']} e causou {dano} de dano!")
 
         self.inimigo.vida -= dano
+        self.heroi.dano_causado += dano
 
         self.heroi.mana -= ataque_escolhido['Custo']
 
