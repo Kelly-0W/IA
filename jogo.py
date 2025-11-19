@@ -95,7 +95,69 @@ while True:
         inimigo_combate.dropar_item()
         andar += 1
 
+# calcula a pontuação
+def calcular_pontuacao(heroi, duracao, venceu):
+    pontos = 0
+    if venceu:
+        pontos += 10000
+
+    pontos += 10 * heroi.dano_causado
+    pontos += 5 * heroi.dano_bloqueado
+    pontos += 3 * heroi.dano_recebido
+    pontos += 10000 / duracao
+
+    return int(pontos)
+
+# cria o arquivo txt e lê ele
+def salvar_record(tempo, pontuacao, heroi):
+    try:
+        with open("records.txt", "r") as f:
+            linhas = f.readlines()
+    except FileNotFoundError:
+        linhas = []
+
+    dados = []
+
+    for l in linhas:
+        t, p, dc, db, dr = l.strip().split("|")
+        dados.append({
+            "tempo": float(t),
+            "pontuacao": int(p),
+            "dano_causado": int(dc),
+            "dano_bloqueado": int(db),
+            "dano_recebido": int(dr)
+        })
+
+    # adiciona a nova run
+    dados.append({
+        "tempo": tempo,
+        "pontuacao": pontuacao,
+        "dano_causado": heroi.dano_causado,
+        "dano_bloqueado": heroi.dano_bloqueado,
+        "dano_recebido": heroi.dano_recebido
+    })
+
+    # ordena: maior pontuação primeiro, e em empate menor tempo vence
+    dados = sorted(dados, key=lambda x: (-x["pontuacao"], x["tempo"]))
+
+    # mantém top 10
+    dados = dados[:10]
+
+    # regrava o arquivo
+    with open("records.txt", "w") as f:
+        for d in dados:
+            f.write(
+                f"{d['tempo']}|{d['pontuacao']}|{d['dano_causado']}|{d['dano_bloqueado']}|{d['dano_recebido']}\n")
+
 fim = time.time()
 
 duraçao = fim - começo
+
 print(f"Essa run durou {duraçao:.2f}")
+
+venceu = (andar > 4 and heroi.vida > 0)
+pontuacao = calcular_pontuacao(heroi, duraçao, venceu)
+
+print(f"Sua pontuação final foi: {pontuacao}")
+
+salvar_record(duraçao, pontuacao, heroi)
