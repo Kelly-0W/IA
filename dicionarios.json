@@ -1,8 +1,8 @@
 {
     "Heróis": [
-        {"Classe": "Guerreiro", "Vida": 35, "Ataques": [
+        {"Classe": "Guerreiro", "Vida": 30, "Ataques": [
             {"Nome do ataque": "Estocada feroz", "Dano": 5, "Recarga": 0},
-            {"Nome do ataque": "Investida poderosa", "Dano": 7, "Recarga": 2}
+            {"Nome do ataque": "Investida poderosa", "Dano": 8, "Recarga": 3}
         ], "Inventário": [], "Mana": 0},
         {"Classe": "Mago", "Vida": 25, "Ataques": [
         {"Nome do ataque": "Bola de fogo", "Elemento": "Fogo", "Dano": 5, "Custo": 1},

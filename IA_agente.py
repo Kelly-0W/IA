@@ -16,8 +16,8 @@ with open("dicionarios.json", "r", encoding="utf-8") as f:
 HERÓIS = dados.get("Heróis", [])
 # parâmetros do agente
 EPSILON = 0.3
-ALPHA = 0.1
-GAMMA = 0.95
+ALPHA = 0.05
+GAMMA = 0.8
 EPISODIOS = 20
 
 class AgenteSimples:
@@ -200,8 +200,8 @@ class AmbienteSimples:
         dano_bloqueado_turno = self.heroi.dano_bloqueado - dano_bloqueado_antes
         dano_recebido_turno = self.heroi.dano_recebido - dano_recebido_antes
 
-        recompensa += 2.0 * dano_causado_turno
-        recompensa += 1.5 * dano_bloqueado_turno
+        recompensa += 2.2 * dano_causado_turno
+        recompensa += 1.0 * dano_bloqueado_turno
         recompensa -= 2.0 * dano_recebido_turno
 
         if self.heroi.classe == "Mago":
@@ -309,13 +309,13 @@ def treinar_simples(classe_heroi="Guerreiro", episodios=EPISODIOS):
     # salva o arquivo
     nome_arquivo = f"qlearning_{classe_heroi.lower()}_{time.strftime('%Y%m%d_%H%M%S')}.xlsx"
     df.to_excel(nome_arquivo, index=False)
-    print(f"\nDados de treinamento salvos em: {nome_arquivo}")
+    print(f"Dados de treinamento salvos em: {nome_arquivo}\n")
 
     return agente
 
 if __name__ == "__main__":
     print("--- Treinando Guerreiro ---")
-    treinar_simples(classe_heroi="Guerreiro", episodios=50)
+    treinar_simples(classe_heroi="Guerreiro", episodios=5000)
 
     print("--- Treinando Mago ---")
     treinar_simples(classe_heroi="Mago", episodios=5000)

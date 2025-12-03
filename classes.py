@@ -169,6 +169,7 @@ class combate_guerreiro(Heroi):
         self.heroi.defendendo = self.defendendo
         self.heroi.recarga_parry = self.recarga_parry
         self.heroi.arma = 0
+        self.heroi.vida_maxima = vida
 
         for ataque in self.ataques:
             ataque['Cooldown atual'] = 0
@@ -238,9 +239,12 @@ class combate_guerreiro(Heroi):
     # funções para a defesa, parry, reset de defesa, aparada e recarga dos ataques
     def defender(self):
         self.heroi.defendendo = True
-        self.heroi.vida += 2
+        self.heroi.vida += 1
         if not self.heroi.modo_ia:
-            print("\nVocê está se defendendo! Isso recupera 3 de vida!")
+            print("\nVocê está se defendendo! Isso recupera 1 de vida!")
+        
+        if self.heroi.vida > self.heroi.vida_maxima:
+            self.heroi.vida = self.heroi.vida_maxima
 
     def parry(self):
         if self.heroi.recarga_parry > 0:
@@ -298,6 +302,8 @@ class combate_guerreiro(Heroi):
             self.heroi.vida += item['Valor']
             if not self.heroi.modo_ia:
                 print(f"Você usou {item['Nome']} e recuperou {item['Valor']} de vida!")
+            if self.heroi.vida > self.heroi.vida_maxima:
+                self.heroi.vida = self.heroi.vida_maxima
 
         # recupera mana somente se o herói for mago
         elif item['Atributo'] == 'Mana':
@@ -342,6 +348,7 @@ class combate_mago(Heroi):
         self.heroi.defendendo = self.defendendo
         self.heroi.recarga_parry = self.recarga_parry
         self.heroi.arma = 0
+        self.heroi.vida_maxima = vida
 
     def atacar(self, escolha=None):
         if self.heroi.modo_ia:
@@ -469,8 +476,10 @@ class combate_mago(Heroi):
         if item['Atributo'] == 'Vida':
             self.heroi.vida += item['Valor']
             if not self.heroi.modo_ia:
-                print(
-                    f"Você usou {item['Nome']} e recuperou {item['Valor']} de vida!")
+                print(f"Você usou {item['Nome']} e recuperou {item['Valor']} de vida!")
+            
+            if self.heroi.vida > self.heroi.vida_maxima:
+                self.heroi.vida = self.heroi.vida_maxima
 
         # recupera mana somente se o herói for mago
         elif item['Atributo'] == 'Mana':
